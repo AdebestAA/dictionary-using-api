@@ -56,7 +56,7 @@ themeBtn.addEventListener("click",()=>{
 function displayDiv(word, POS, meaning) {
     word = word.charAt(0).toUpperCase() + word.slice(1, word.length)
     POS = POS.charAt(0).toUpperCase() + POS.slice(1, POS.length)
-    container.innerHTML = `<span>Word: ${word}</span><span>Part of Speech: ${POS}</span>
+    container.innerHTML = `<span class="word-POS">Word:<b> ${word}</b></span><span  class="word-POS">Part of Speech:<b> ${POS}</b></span>
    ${meaning}`
 }
 
