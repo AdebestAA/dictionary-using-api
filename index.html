@@ -10,17 +10,27 @@
 
 
 <body>
-    <h1>Dictionary</h1>
-    <main containerForAll>
-        <label for="text">Enter your Word</label>
-        <div inputContainer>
-            <input type="text" id="" placeholder="Enter your word">
-            <button>search</button>
-        </div>
-
-        <div outputContainer class="outputContainer">
-
-        </div>
+    <main class="main-container">
+<!-- 🔆 -->
+<!-- ⚫ -->
+<nav class="navbar">
+    <h1 class="header-dic">Dictionary</h1>
+    <button class="theme-btn">⚫</button>
+</nav>
+      
+        <main containerForAll>
+            <label for="text" class="label-input">Enter your Word</label>
+            <div inputContainer>
+                <input type="text" id="" placeholder="search...">
+                <button class="search-btn">search</button>
+            </div>
+            
+            <div outputContainer class="outputContainer">
+                <figure class="loader">
+                    <img src="/loader/loader1.svg" alt="">
+                </figure>
+            </div>
+        </main>
     </main>
 </body>
 

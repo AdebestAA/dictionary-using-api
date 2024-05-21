@@ -1,10 +1,39 @@
 let container = document.querySelector('.outputContainer')
 
 let input = document.querySelector("input")
-let searchBtn = document.querySelector('button')
+let searchBtn = document.querySelector('.search-btn')
+const themeBtn = document.querySelector(".theme-btn")
+const loader = document.querySelector(".loader")
+loader.style.display = "none"
+console.log(loader);
 
-console.log(input);
+let currentTheme = "light-theme"
 
+localStorage.setItem("theme",currentTheme)
+document.documentElement.className = currentTheme
+let nu = "22"
+console.log(typeof "ade" !== "string");
+console.log();
+themeBtn.addEventListener("click",()=>{
+    
+    if(localStorage.getItem("theme") === "light-theme"){
+        
+        console.log(themeBtn);
+        currentTheme = "dark-theme"
+        localStorage.setItem("theme",currentTheme)
+        document.documentElement.className = currentTheme
+        themeBtn.textContent = "🔆"
+    }
+    else{
+        currentTheme ="light-theme"
+        localStorage.setItem("theme",currentTheme)
+        document.documentElement.className = currentTheme;
+        themeBtn.textContent = "⚫"
+}
+
+
+}
+)
 
 // Using FETCH
 // fetch('https://dog.ceo/api/breeds/image/random')
@@ -34,18 +63,27 @@ function displayDiv(word, POS, meaning) {
 
 
 async function generateWord(word) {
-
+    
+   
+try {
     let response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-
+    if (response.ok) {
+    loader.style.display = "none"
+    }
     let responseOutput = await response.json()
     console.log(responseOutput);
 
     return responseOutput
 
 
+} catch (error) {
+    throw new Error(error.message)
+}
+
 
 
 }
+
 
 
 function clearInputWord() {
@@ -57,18 +95,34 @@ function clearInputWord() {
 
 const newFunction = async () => {
     let loopThroughDefinitions = ''
-
+input.addEventListener("keydown",()=>{
+     container.innerHTML = ""
+})
     // User Input
     inputValue = input.value
-    if (input.value === "") {
+    console.log(inputValue);
+    if (input.value === "" || Boolean(Number(input.value))) {
         alert(`you haven't enterred any word`)
+         container.innerHTML = ""
+        clearInputWord()
         return
     }
-
-
+if (inputValue) {
+    loader.style.display = "block"
+}
 
 
     let wordOutput = await generateWord(inputValue)
+    // console.log(wordOutput);
+    if (!Array.isArray(wordOutput)) {
+        loader.style.display = "none"
+        let para = document.createElement("p")
+        para.textContent = wordOutput.message
+        para.setAttribute("class","not-found")
+        container.appendChild(para)
+        clearInputWord()
+        return
+    }
     let wordSearched = wordOutput[0].word;
     let POS = wordOutput[0].meanings[0].partOfSpeech;
     let definitions = wordOutput[0].meanings[0].definitions[0].definition
@@ -79,17 +133,30 @@ const newFunction = async () => {
     wordArray.forEach((definitionsInArray, index) => {
 
         index += 1
+        // if (!definitionsInArray.hasOwnProperty('example')) {
+        //     loopThroughDefinitions += `<p>
+        // Definition ${index}: ${definitionsInArray.definition}<p/>`
+        // }
+        // else {
+
+        //     loopThroughDefinitions += `<p>
+        // Definition ${index}: ${definitionsInArray.definition}<p/>
+        // <span>Example: ${definitionsInArray.example}</span>`
+        // }
+
+
         if (!definitionsInArray.hasOwnProperty('example')) {
-            loopThroughDefinitions += `<p>
-        Definition ${index}: ${definitionsInArray.definition}<p/>`
+        loopThroughDefinitions += `<section>
+        <span class="word-def">
+        Definition ${index} </span>:<p class="definition"> ${definitionsInArray.definition}</p></section>`
         }
         else {
 
-            loopThroughDefinitions += `<p>
-        Definition ${index}: ${definitionsInArray.definition}<p/>
-        <span>Example: ${definitionsInArray.example}</span>`
+        loopThroughDefinitions += `<section>
+        <span class="word-def">
+        Definition ${index} </span>:<p class="definition"> ${definitionsInArray.definition}</p></section>
+        <p class="example">Example: ${definitionsInArray.example}</p>`
         }
-
 
         // if ('example' in definitionsInArray === false) {
         //   definitionsInArray.
