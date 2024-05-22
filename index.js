@@ -4,7 +4,7 @@ let input = document.querySelector("input")
 let searchBtn = document.querySelector('.search-btn')
 const themeBtn = document.querySelector(".theme-btn")
 const loader = document.querySelector(".loader")
-loader.style.display = "none"
+loader.style.display = "block"
 console.log(loader);
 
 let currentTheme = "light-theme"
