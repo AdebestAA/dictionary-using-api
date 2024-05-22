@@ -131,7 +131,7 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        /* padding: 20px; */
+        padding: 20px;
         border-radius: 10px;
         width: 80%;
         margin-bottom: 0.7rem;
@@ -147,10 +147,10 @@
 
     [outputContainer] {
         margin-block: 0.5rem;
-        /* background-color: green; */
-        /* margin-inline: 0.2rem; */
+        background-color: green;
+      
         width: 100%;
-        /* text-align: center; */
+      
     }
 
     label {
@@ -159,18 +159,17 @@
 
 .word-def{
     font-weight: 900;
-    /* width: 100%; */
+  
 }
 
 .example{
     font-style: italic;
-    padding-left: 0.5rem;
-    /* width: 100%; */
+
 }
 
 .definition{
     /* background-color: red; */
-    padding-left: 0.5rem;
+    /* padding-left: 0.5rem; */
     /* width: 90%; */
 }
 
@@ -205,16 +204,16 @@
     .word-POS{
     font-size: 0.8rem;
     }
-    
-                input {
-                    height: 2rem;
-                    border-radius: 10px;
-                    border: 1px solid black;
-                    outline:none;
-                    margin-right: 10px;
-                    padding-left: 10px;
-                    background-color: var(--INPUTCOLOR);
-                    width: 80%;
-        
-                }
+
+    input {
+        height: 2rem;
+        border-radius: 10px;
+        border: 1px solid black;
+        outline:none;
+        margin-right: 10px;
+        padding-left: 10px;
+        background-color: var(--INPUTCOLOR);
+        width: 80%;
+
+    }
     }
